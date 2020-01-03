@@ -10,11 +10,13 @@
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
+    "gulp-if": "^3.0.0",
     "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "gulp-watch": "^5.0.1",
-    "gulp-sass": "^4.0.2"
+    "readline-sync": "^1.4.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

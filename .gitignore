@@ -6,3 +6,4 @@
 _local/
 *._local
 node_modules/
+build/
