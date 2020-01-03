@@ -3,7 +3,7 @@
 Hi Joelle. Here's my somewhat over the top code challenge.
 
 ## Getting Started
-Just download the repo to take a look. I've included the dist so you don't have to compile anything.
+Just download the repo to take a look. I've included the dist/ folder so you don't have to compile anything.
 
 ```bash
 git clone https://github.com/shraka/reint-codetest.git
