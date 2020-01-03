@@ -36,7 +36,7 @@ function style() {
  			.pipe(sourcemaps.init())
             .pipe(sass())
             	.on("error", sass.logError)
-            .pipe(postcss([autoprefixer(), cssnano()]))
+            // .pipe(postcss([autoprefixer(), cssnano()]))
             .pipe(sourcemaps.write(paths.sourcemaps))
             .pipe(gulp.dest(paths.styles.dest))
     );
@@ -56,7 +56,7 @@ function script() {
 exports.script = script;
 
 function watch(){
-    gulp.watch(pathsfiles.src, moveFiles);
+    gulp.watch(paths.files.src, moveFiles);
     gulp.watch(paths.styles.src, style);
     gulp.watch(paths.scripts.src, script);
 }

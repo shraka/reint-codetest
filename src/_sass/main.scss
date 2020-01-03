@@ -2,17 +2,27 @@
 $grid-gutter-width: 15px;
 
 // Dependancies
-@import "./node_modules/bootstrap-scss/bootstrap.scss";
+@import "./node_modules/bootstrap-scss/bootstrap-grid.scss";
+/* 
+ * Only the bootstrap grid is needed.
+ * For extensibility full bootstrap is included in the HTML
+ * from the CDN.
+ */
 
 /*!
  * Stoddart styles by Nimrod Evans, 2020/01/01
  */
 
-// Custom variables
+//////////////////////
+// Custom variables //
+//////////////////////
+
 // Breakpoints
+$screen-xsm: "only screen and ( min-width: 400px)"; // Special, breaks bootstrap convention
+$screen-sm: "only screen and ( min-width:" + map-get($grid-breakpoints, "sm") + ")";
 $screen-md: "only screen and ( min-width:" + map-get($grid-breakpoints, "md") + ")";
 $screen-lg: "only screen and ( min-width:" + map-get($grid-breakpoints, "lg") + ")";
-
+ 
 // Colours
 $greyBG: #4b4b4b;
 
@@ -30,7 +40,11 @@ $link-active-colour: #1e72ba;
 
 $font-colour-secondary: #969698;
 
-// Re-usable CSS
+
+///////////////////
+// Re-usable CSS //
+///////////////////
+
 .display-image {
   border: 1px solid $border-colour;
   border-radius: 5px;
@@ -80,7 +94,7 @@ form.purchase {
   display: flex;
   align-items: stretch;
 
-  label {
+  label[for=quantity] {
     flex-grow: 0;
     align-self: center;
     padding-right: 0.5em;
@@ -99,7 +113,9 @@ form.purchase {
   }
 }
 
-// Global CSS
+////////////////
+// Global CSS //
+////////////////
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -108,7 +124,9 @@ body {
   margin-bottom: 4rem;
 }
 
-// Structural CSS
+////////////////
+// Layout CSS //
+////////////////
 
 // Site heading
 
@@ -242,9 +260,9 @@ body {
   @extend .container;
 
   > .wrapper {
-    // @extend .row;
     padding-top: 10px;
     padding-bottom: 10px;
+
     @media #{$screen-md} {
       display: flex;
       justify-content: space-around;
@@ -299,7 +317,6 @@ body {
 }
 
 // Main page area
-
 .page-wrapper{
   @extend .container;
 
@@ -330,7 +347,6 @@ body {
 }
 
 #product {
-  // @include make-row();
   @extend .row;
 
   margin-top: 0.5rem;
@@ -368,6 +384,7 @@ body {
   display: inline-block;
   vertical-align: top;
   width: 100%;
+
   @media #{$screen-md} {
     width: 79%;
   }
@@ -383,8 +400,13 @@ body {
   @extend .col-md-5;
 
   h1 {
+    text-align: center;
     font-size: 2em;
     font-weight: 800;
+
+    @media #{$screen-md} {
+      text-align: left;
+    }
   }
   &> .cost {
     font-size: 2em;
@@ -443,6 +465,9 @@ body {
         font-size: 0.9rem;
       }
     }
+    .cost {
+      text-align: right;
+    }
     .wrapper {
       @extend .row;
       padding-bottom: 0em;
@@ -458,11 +483,32 @@ body {
     .category{
       padding-bottom: .4em;
     }
+
+    // Some custom flexbox stuff, just for fun. Normally I'd use Bootstrap grid.
+    form.purchase {
+      flex-wrap: wrap;
+      margin: -.25rem;
+
+      > * {
+        margin: .25rem;
+      }
+
+      @media #{$screen-xsm} {
+        flex-wrap: nowrap;
+      }
+
+      input[name="quantity"] {
+        flex-grow: 1;
+        @media #{$screen-xsm} {
+          flex-grow: 0;
+        }
+      }
+      input[type="submit"] {
+        flex-grow: 2;
+      }
+    }
   }
 }
-
-
-
 
 .product-tabs{
   margin-bottom: 3rem;
@@ -480,14 +526,7 @@ body {
 
     li {
       @extend .col-md-3;
-
       border: 1px solid $border-colour;
-      /*
-      border-top: 1px solid $border-colour;
-      border-right: 1px solid $border-colour;
-      border-bottom: 1px solid $border-colour;
-      border-radius: 7px 7px 0 0;
-      */
 
       @media #{$screen-md} {
         border-left: 0;
